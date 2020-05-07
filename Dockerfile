@@ -3,10 +3,11 @@
 # Allows running MATLAB-compiled standalone files. Adapted from
 # vistalab's MCR Dockerfile
 
-FROM ubuntu:bionic
+FROM debian:buster-slim
 
 # Install MCR dependencies
 RUN apt-get update && apt-get -qq install -y \
+    --no-install-recommends \
     unzip \
     xorg \
     wget \
