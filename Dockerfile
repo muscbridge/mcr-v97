@@ -11,14 +11,15 @@ RUN apt-get update && apt-get -qq install -y \
     unzip \
     xorg \
     wget \
-    curl
+    curl \
+    ca-certificates
 
 # Install MCR
 RUN mkdir /mcr-install && \
     mkdir -p /opt/mcr/v97
 
 RUN cd /mcr-install && \
-    wget https://ssd.mathworks.com/supportfiles/downloads/R2019b/Release/5/deployment_files/installer/complete/glnxa64/MATLAB_Runtime_R2019b_Update_5_glnxa64.zip
+    wget --no-check-certificate https://ssd.mathworks.com/supportfiles/downloads/R2019b/Release/5/deployment_files/installer/complete/glnxa64/MATLAB_Runtime_R2019b_Update_5_glnxa64.zip
 RUN cd mcr-install && unzip MATLAB_Runtime_R2019b_Update_5_glnxa64.zip && \
     ./install -destinationFolder /opt/mcr -agreeToLicense yes -mode silent
 RUN rm -rf /mcr-install
